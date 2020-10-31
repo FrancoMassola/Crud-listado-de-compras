@@ -1,0 +1,95 @@
+<%- include ('partials/_header');  %>
+
+
+<div class="container">
+    <div class="row">
+
+        <!-- FORM -->
+        <div class="col-md-4">
+            <div class="card" style="background-color: darkgray;">
+                <div class="card-body">
+                    <form action="/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="title" placeholder="Insertar Producto" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" cols="80" class="form-control"
+                                placeholder="Insertar una descripcion"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LIST -->
+
+        <div class="col-md-8">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Nro de compra</th>
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < productos_compras.length; i++){ %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= productos_compras[i].title %></td>
+                        <td><%= productos_compras[i].description %></td>
+                        <td>
+                            <a href="/done/<%= productos_compras[i]._id %>"
+                                class="btn <%= productos_compras[i].status ? 'btn-success' : 'btn-dark' %>">Conseguido</a>
+                            <a href="/delete/<%= productos_compras[i]._id %>" class="btn btn-danger">Borrar</a>
+                            <a href="/edit/<%= productos_compras[i]._id %>" class="btn btn-info">Editar</a>
+
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 ">
+            BUSCADOR
+            <div class="card" style="background-color: darkgray;">
+                <div class=" card-body">
+                    <form action="/buscar">
+                        <div class="form-group">
+                            <input type="text" name="buscador" placeholder="Insertar producto" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4 ">
+            <br>
+
+            <a href="/ordenar" style="color: darkred;">Ordenar Alfabeticamente</a>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<%- include ('partials/_footer');  %>
